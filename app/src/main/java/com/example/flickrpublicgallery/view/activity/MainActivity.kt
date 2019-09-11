@@ -1,36 +1,29 @@
 package com.example.flickrpublicgallery.view.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.example.flickrpublicgallery.R
-import com.example.flickrpublicgallery.network.model.Status
-import com.example.flickrpublicgallery.utils.Injection
-import com.example.flickrpublicgallery.utils.observe
-import com.example.flickrpublicgallery.viewmodel.FlickrGalleryViewModel
-import com.example.flickrpublicgallery.viewmodel.factory.FlickrGalleryViewmodelFactory
+import com.example.flickrpublicgallery.model.response.FeedItem
+import com.example.flickrpublicgallery.view.fragment.FeedItemDetailsFragment
+import com.example.flickrpublicgallery.view.fragment.PhotoGalleryFragment
+import com.jaeger.library.StatusBarUtil
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), PhotoGalleryFragment.Listener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val viewmodel =
-            ViewModelProvider(this, FlickrGalleryViewmodelFactory(Injection.provideFlickrGalleryRepository()))
-                .get(FlickrGalleryViewModel::class.java)
+        StatusBarUtil.setTransparent(this)
+        StatusBarUtil.setLightMode(this)
 
-        viewmodel.getPhotoGalleryLiveData().observe(this) {
-            when (it?.status) {
-                Status.LOADING -> Log.d("Mudit", "loading results")
-                Status.ERROR -> Log.e("Mudit", "failure results ${it.throwable?.localizedMessage}", it.throwable)
-                Status.SUCCESS -> Log.d("Mudit", "success results ${it.data?.items?.size}")
-            }
-        }
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, PhotoGalleryFragment.newInstance()).commit()
+    }
 
-        viewmodel.tag.set("cat")
-        viewmodel.loadPhotos()
-
+    override fun showDetails(feedItem: FeedItem) {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.container, FeedItemDetailsFragment.newInstance(feedItem))
+            .addToBackStack("details").commit()
     }
 }

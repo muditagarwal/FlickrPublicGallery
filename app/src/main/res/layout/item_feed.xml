@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="FeedItemBinding">
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.example.flickrpublicgallery.model.response.FeedItem" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/feedItemCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:tag="@{item}"
+        app:cardCornerRadius="@dimen/gap_8"
+        app:cardElevation="@dimen/gap_4">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/photo"
+                imageResUrl="@{item.media.m}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="240dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/sample_beach_picture" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#bbffffff"
+                android:padding="@dimen/gap_8"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="@{item.title}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    app:layout_constraintBottom_toTopOf="@+id/date"
+                    tools:layout_constraintBottom_toTopOf="@+id/date"
+                    tools:text="Sample Photo" />
+
+                <TextView
+                    android:id="@+id/date"
+                    publishedDate="@{item.published}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:text="Sep 11, 2019 10:56:13" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

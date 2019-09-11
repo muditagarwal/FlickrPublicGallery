@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="FeedItemDetailsBinding">
+
+        <variable
+            name="item"
+            type="com.example.flickrpublicgallery.model.response.FeedItem" />
+
+    </data>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/feedItemPhoto"
+                imageResUrl="@{item.media.m}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="240dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/sample_beach_picture" />
+
+            <TextView
+                android:id="@+id/feedItemTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/gap_16"
+                android:layout_marginTop="@dimen/gap_16"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{item.title}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                app:layout_constraintTop_toBottomOf="@+id/feedItemPhoto"
+                tools:text="Sample Photo" />
+
+            <TextView
+                android:id="@+id/feedItemPublishedDate"
+                publishedDate="@{item.published}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/gap_16"
+                android:layout_marginTop="@dimen/gap_4"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintTop_toBottomOf="@+id/feedItemTitle"
+                tools:text="Sep 11, 2019 10:56:13" />
+
+            <TextView
+                android:id="@+id/dateTaken"
+                dateTaken="@{item.dateTaken}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/gap_16"
+                android:layout_marginTop="@dimen/gap_4"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintTop_toBottomOf="@+id/feedItemPublishedDate"
+                tools:text="Sep 11, 2019 10:56:13" />
+
+            <TextView
+                android:id="@+id/author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/gap_16"
+                android:layout_marginTop="@dimen/gap_4"
+                android:text="@{String.format(@string/author, item.author)}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintTop_toBottomOf="@+id/dateTaken"
+                tools:text="Author: Mudit Agawal" />
+
+            <TextView
+                android:id="@+id/tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/gap_16"
+                android:layout_marginTop="@dimen/gap_4"
+                android:text="@{String.format(@string/tags, item.tags)}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintTop_toBottomOf="@+id/author"
+                tools:text="Tags: mountains georgia tbilisi" />
+
+            <TextView
+                android:id="@+id/descriptionLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/gap_16"
+                android:layout_marginTop="@dimen/gap_12"
+                android:text="@string/description"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                app:layout_constraintTop_toBottomOf="@+id/tags" />
+
+            <TextView
+                android:id="@+id/description"
+                html="@{item.description}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/gap_16"
+                android:layout_marginTop="@dimen/gap_4"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionLabel"
+                tools:text="some description" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

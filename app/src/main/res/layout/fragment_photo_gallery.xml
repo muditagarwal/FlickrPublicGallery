@@ -1,8 +1,9 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
-    <data>
+    <data class="PhotoGalleryFragmentBinding">
 
         <variable
             name="viewmodel"
@@ -15,26 +16,21 @@
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
-            android:fitsSystemWindows="true">
+            android:background="@android:color/white"
+            app:liftOnScroll="true">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/toolbar_layout"
-                app:contentScrim="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:toolbarId="@+id/toolbar"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fitsSystemWindows="true">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    app:layout_collapseMode="pin"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize" />
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
+                app:title="@string/photo_gallery" />
         </com.google.android.material.appbar.AppBarLayout>
+
+        <include
+            layout="@layout/layout_photo_gallery"
+            bind:viewmodel="@{viewmodel}" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

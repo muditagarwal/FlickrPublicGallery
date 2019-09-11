@@ -30,7 +30,7 @@ class FlickrGalleryViewModelTest {
 
     @Test
     fun loadPhotos() {
-        flickrGalleryViewModel.tag.set("abc")
+        flickrGalleryViewModel.tagMutableLiveData.value = "abc"
         flickrGalleryViewModel.loadPhotos()
 
         Assert.assertEquals(flickrGalleryViewModel.getPhotoGalleryLiveData().value?.status, Status.SUCCESS)

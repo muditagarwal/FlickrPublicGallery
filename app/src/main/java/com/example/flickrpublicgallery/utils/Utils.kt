@@ -1,8 +1,10 @@
 package com.example.flickrpublicgallery.utils
 
 import com.example.flickrpublicgallery.BuildConfig
+import com.example.flickrpublicgallery.R
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import java.net.UnknownHostException
 import java.util.concurrent.TimeUnit
 
 /**
@@ -24,4 +26,12 @@ fun getOkHttpClient(): OkHttpClient {
     }
 
     return okHttpClientBuilder.build()
+}
+
+fun Throwable.getDisplayMessage(): Int {
+    return when (this) {
+        is UnknownHostException -> R.string.error_no_internet
+        else -> R.string.error_msg_generic
+    }
+
 }
