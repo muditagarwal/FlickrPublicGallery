@@ -1,8 +1,7 @@
 package com.example.flickrpublicgallery.utils
 
-import android.content.Context
 import com.example.flickrpublicgallery.model.repository.FlickrGalleryRepository
-import com.example.flickrpublicgallery.network.service.FlickrGalleryAPI
+import com.example.flickrpublicgallery.network.service.api.FlickrGalleryAPI
 import retrofit2.Retrofit
 
 /**
@@ -11,10 +10,10 @@ import retrofit2.Retrofit
 interface Injector {
 
     //repo injectors
-    fun provideUserRepository(context: Context): FlickrGalleryRepository
+    fun provideFlickrGalleryRepository(): FlickrGalleryRepository
 
     // network related APIs
     fun provideRetrofit(baseUrl: String): Retrofit
 
-    fun provideLoginAPI(baseUrl: String): FlickrGalleryAPI
+    fun provideFlickrAPI(): FlickrGalleryAPI
 }
