@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 class ItemOffsetDecoration(
     context: Context?,
     private val dividerHeight: Int,
-    private val marginDirection: MarginDirection = MarginDirection.TOP,
+    private var marginDirection: MarginDirection = MarginDirection.TOP,
     orientation: Int = VERTICAL
 ) :
     DividerItemDecoration(context, orientation) {

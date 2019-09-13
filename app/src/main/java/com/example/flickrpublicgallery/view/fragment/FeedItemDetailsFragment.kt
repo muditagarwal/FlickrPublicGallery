@@ -33,6 +33,7 @@ class FeedItemDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_feed_item_details, container, false)
+        postponeEnterTransition()
         return binding.root
     }
 

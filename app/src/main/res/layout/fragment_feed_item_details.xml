@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:minHeight="240dp"
                 android:scaleType="centerCrop"
+                android:transitionName="@string/share_element_trans_photo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -44,6 +45,7 @@
                 android:maxLines="2"
                 android:text="@{item.title}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:transitionName="@string/share_element_trans_title"
                 app:layout_constraintTop_toBottomOf="@+id/feedItemPhoto"
                 tools:text="Sample Photo" />
 
@@ -55,6 +57,7 @@
                 android:layout_marginStart="@dimen/gap_16"
                 android:layout_marginTop="@dimen/gap_4"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:transitionName="@string/share_element_trans_pub_date"
                 app:layout_constraintTop_toBottomOf="@+id/feedItemTitle"
                 tools:text="Sep 11, 2019 10:56:13" />
 

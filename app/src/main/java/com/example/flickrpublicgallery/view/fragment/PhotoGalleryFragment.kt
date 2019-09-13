@@ -4,6 +4,8 @@ package com.example.flickrpublicgallery.view.fragment
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
@@ -90,8 +92,13 @@ class PhotoGalleryFragment : Fragment(), FeedItemViewHolder.ViewHolderListener {
         }
     }
 
-    override fun showDetails(feedItem: FeedItem) {
-        listener?.showDetails(feedItem)
+    override fun showDetails(
+        feedItem: FeedItem,
+        photoImageView: ImageView,
+        titleTextView: TextView,
+        publishedDateTextView: TextView
+    ) {
+        listener?.showDetails(feedItem, photoImageView, titleTextView, publishedDateTextView)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -161,7 +168,12 @@ class PhotoGalleryFragment : Fragment(), FeedItemViewHolder.ViewHolderListener {
     }
 
     interface Listener {
-        fun showDetails(feedItem: FeedItem)
+        fun showDetails(
+            feedItem: FeedItem,
+            photoImageView: ImageView,
+            titleTextView: TextView,
+            publishedDateTextView: TextView
+        )
     }
 
 }

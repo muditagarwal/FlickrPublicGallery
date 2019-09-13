@@ -1,5 +1,7 @@
 package com.example.flickrpublicgallery.view.adapter.viewholder
 
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flickrpublicgallery.databinding.FeedItemBinding
 import com.example.flickrpublicgallery.model.response.FeedItem
@@ -15,7 +17,7 @@ class FeedItemViewHolder(
 
     init {
         binding.root.setOnClickListener {
-            listener.showDetails(it.tag as FeedItem)
+            listener.showDetails(it.tag as FeedItem, binding.photo, binding.title, binding.date)
         }
     }
 
@@ -24,6 +26,11 @@ class FeedItemViewHolder(
     }
 
     interface ViewHolderListener {
-        fun showDetails(feedItem: FeedItem)
+        fun showDetails(
+            feedItem: FeedItem,
+            photoImageView: ImageView,
+            titleTextView: TextView,
+            publishedDateTextView: TextView
+        )
     }
 }

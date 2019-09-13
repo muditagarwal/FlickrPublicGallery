@@ -19,4 +19,10 @@
     <string name="author">Author: %1$s</string>
     <string name="tags">Tags: %1$s</string>
     <string name="description">Description</string>
+
+    <!-- transition name -->
+    <string name="share_element_trans_photo">share_element_trans_photo</string>
+    <string name="share_element_trans_title">share_element_trans_title</string>
+    <string name="share_element_trans_pub_date">share_element_trans_pub_date</string>
+
 </resources>

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.flickrpublicgallery.model.repository.FlickrGalleryRepository
 import com.example.flickrpublicgallery.model.response.FlickrFeed
 import com.example.flickrpublicgallery.network.model.Resource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import java.text.SimpleDateFormat
 import java.util.*
@@ -23,14 +24,15 @@ class FlickrGalleryViewModel(private val flickrGalleryRepository: FlickrGalleryR
 
     fun loadPhotos() {
         dataLoading.set(true)
-        runBlocking {
-            photoGalleryLiveData.value = try {
+        val resource: Resource<FlickrFeed> = runBlocking(Dispatchers.IO) {
+            try {
                 Resource.success(flickrGalleryRepository.getPhotos(tagMutableLiveData.value!!) ?: FlickrFeed())
             } catch (exception: Exception) {
-                Resource.error(exception)
+                Resource.error<FlickrFeed>(exception)
             }
-            dataLoading.set(false)
         }
+        photoGalleryLiveData.value = resource
+        dataLoading.set(false)
     }
 
     fun loadPhotosForATag(tag: String) {
@@ -38,7 +40,7 @@ class FlickrGalleryViewModel(private val flickrGalleryRepository: FlickrGalleryR
         loadPhotos()
     }
 
-    fun resetSearch(){
+    fun resetSearch() {
         tagMutableLiveData.value = ""
         loadPhotos()
     }
