@@ -25,7 +25,7 @@ class FlickrGalleryViewModel(private val flickrGalleryRepository: FlickrGalleryR
     fun loadPhotos() {
         dataLoading.set(true)
         val resource: Resource<FlickrFeed> = runBlocking(Dispatchers.IO) {
-            try {
+            return@runBlocking try {
                 Resource.success(flickrGalleryRepository.getPhotos(tagMutableLiveData.value!!) ?: FlickrFeed())
             } catch (exception: Exception) {
                 Resource.error<FlickrFeed>(exception)
@@ -46,7 +46,7 @@ class FlickrGalleryViewModel(private val flickrGalleryRepository: FlickrGalleryR
     }
 
     fun getPhotoGalleryLiveData(): LiveData<Resource<FlickrFeed>> {
-        return photoGalleryLiveData as LiveData<Resource<FlickrFeed>>
+        return photoGalleryLiveData
     }
 
     fun sortByDateTaken() {
